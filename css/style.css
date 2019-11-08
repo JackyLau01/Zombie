@@ -1,0 +1,20 @@
+#zombie {
+    position: absolute;
+    height: 30%;
+    width: 10%;
+}
+
+#score {
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+    font-size: 300%;
+    width: 99%;
+}
+
+#reset {
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

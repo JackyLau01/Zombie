@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+
+        <title>Zombie Hunter</title>
+        <link href="css/style.css" rel="stylesheet" type="text/css">
+
+    </head>
+
+    <body>
+
+        <img id="zombie" onclick="onKill()" src="images/PVZzombie.png"/>
+        <p id="score">Your score is: 0</p>
+        <input type="button" value="Reset game" id='reset' onclick="forReset()">
+        <audio id="kaboom" src="src/Explosion.mp3"></audio>
+
+        <script>
+        
+            let score = 0
+            let canClick = true
+            
+            let screenX = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+            let screenY = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight;
+
+            let centerX = screenX/2;
+            let centerY = screenY/2;
+
+            console.log(zombie.width)
+
+            function moveRandom() {
+                canClick = true
+                let axisx = Math.floor(Math.random()*(screenX - zombie.width));
+                let axisy = Math.floor(Math.random()*(screenY - zombie.height));
+                document.getElementById('zombie').style.left=axisx+"px";
+                document.getElementById('zombie').style.top=axisy+"px";
+                document.getElementById('zombie').src="images/PVZzombie.png"
+            }
+
+            document.getElementById('zombie').onload = setInterval(moveRandom, 2000);
+
+            function onKill() {
+                if (canClick) {
+                document.getElementById('zombie').src = "images/explosion.png";
+                document.getElementById("kaboom").play();
+                score++
+                document.getElementById('score').innerHTML = "Your score is: " + score
+                }
+                canClick = false
+            }
+
+            function forReset() {
+                canClick = true
+                score = 0
+                document.getElementById('score').innerHTML = "Your score is: " + 0
+                document.getElementById('zombie').style.left=(centerX - (zombie.width/2))+"px";
+                document.getElementById('zombie').style.top=(centerY - (zombie.height/2))+"px";
+                document.getElementById('zombie').src="images/PVZzombie.png"
+            }
+
+            forReset()
+
+        </script>
+
+    </body>
+
+</html>
